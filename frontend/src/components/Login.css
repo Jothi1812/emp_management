@@ -1,0 +1,129 @@
+/* Login.css */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* Light pastel blue background for the full container */
+  }
+  
+  .image-container img {
+    width: 450px;
+    height: auto;
+    border-radius: 10px;
+    margin-right: 40px; /* Space between image and form */
+  }
+  
+  .form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10%; /* Move the form slightly to the left */
+  }
+  
+  .bg-white {
+    background-color: #FFFFFF; /* White background for the form for contrast */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow for a cute effect */
+    width: 100%;
+    max-width: 600px; /* Ensures the form doesn't get too wide */
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .bg-white:hover {
+    transform: scale(1.05); /* Slight scaling effect on hover */
+  }
+  
+  h2 {
+    color: #FF6F61; /* Cute, soft coral color */
+    font-size: 28px;
+    font-family: 'Poppins', sans-serif; /* Rounded, friendly font */
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 20px;
+    transition: color 0.3s ease;
+  }
+  
+  h2:hover {
+    color: #FF3D2E; /* Hover effect for title */
+  }
+  
+  .input-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    position: relative;
+  }
+  
+  input {
+    width: 100%;
+    padding: 12px 16px;
+    padding-left: 40px; /* Adds space for the icon inside the input */
+    margin-top: 10px;
+    border-radius: 20px; /* Rounded edges for the input field */
+    border: 1px solid #FF6F61;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  input:focus {
+    border-color: #FF3D2E; /* Change border color on focus */
+    outline: none;
+  }
+  
+  button {
+    width: 100%;
+    padding: 12px 16px;
+    background-color: #FF6F61;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  button:hover {
+    background-color: #FF3D2E; /* Hover effect for the button */
+    transform: translateY(-3px); /* Button lift effect */
+  }
+  
+  button:active {
+    transform: translateY(2px); /* Button press effect */
+  }
+  
+  /* Icon styles */
+  .input-container label {
+    display: flex;
+    align-items: center;
+    color: #FF6F61; /* Color of label text */
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 10px; /* Adds space below the label */
+    margin-right: 20px; /* Space between icon and label */
+  }
+  
+  .fas {
+    font-size: 20px; /* Larger icons for better visibility */
+    color: #FF6F61; /* Color of the icon */
+    margin-right: 12px; /* Space between icon and input */
+  }
+  
+  .relative {
+    position: relative;
+  }
+  
+  @media (max-width: 768px) {
+    .form-container {
+      flex-direction: column; /* Stack form and image on smaller screens */
+      margin-left: 0;
+    }
+  
+    .image-container {
+      margin-bottom: 30px; /* Space between image and form on small screens */
+    }
+  }
+  

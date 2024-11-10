@@ -1,0 +1,116 @@
+/* Overall container styling */
+.employee-container {
+    background-color: #f0f8f1; /* Soft green background */
+    padding: 90px;
+    border-radius: 8px;
+    margin: 20px auto;
+    max-width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Table Styling */
+  table {
+    width: 200%;
+    border-collapse: collapse;
+    background-color: white; /* White background for the table */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    font-size: 16px;
+  }
+  
+  /* Table Header Styling */
+  th {
+    background-color: #f0f8f1; /* Soft green header */
+    color: #5f2b8c; /* Purple text for headers */
+    padding: 15px 20px;
+    text-align: left;
+    font-weight: bold;
+    border-bottom: 2px solid #ddd;
+  }
+  
+  /* Table Data Styling */
+  td {
+    padding: 15px 20px;
+    color: #5f2b8c; /* Purple text */
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  /* Hover effect for rows */
+  tr:hover {
+    background-color: #f9f9f9;
+  }
+  
+  /* Actions Buttons Styling */
+  button {
+    background-color: #5f2b8c; /* Purple background for buttons */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 14px;
+  }
+  
+  button:hover {
+    background-color: #4c1d72; /* Darker purple on hover */
+  }
+  
+  /* Button Container */
+  button + button {
+    margin-left: 10px; /* Space between Edit and Delete buttons */
+  }
+  
+  /* Column widths (expand for better structure) */
+  th:nth-child(1), td:nth-child(1) {
+    width: 8%; /* ID column width */
+  }
+  
+  th:nth-child(2), td:nth-child(2) {
+    width: 20%; /* Name column width */
+  }
+  
+  th:nth-child(3), td:nth-child(3) {
+    width: 15%; /* Department column width */
+  }
+  
+  th:nth-child(4), td:nth-child(4) {
+    width: 25%; /* Email column width */
+  }
+  
+  th:nth-child(5), td:nth-child(5) {
+    width: 15%; /* Phone column width */
+  }
+  
+  th:nth-child(6), td:nth-child(6) {
+    width: 10%; /* Salary column width */
+  }
+  
+  th:nth-child(7), td:nth-child(7) {
+    width: 15%; /* Actions column width */
+  }
+  
+  /* Responsive Design: Stack buttons on small screens */
+  @media (max-width: 768px) {
+    table {
+      width: 100%;
+      font-size: 14px;
+    }
+  
+    td, th {
+      padding: 10px;
+    }
+  
+    button {
+      width: 100%; /* Full width buttons on small screens */
+      margin-top: 10px;
+    }
+  
+    button + button {
+      margin-left: 0; /* Remove space between buttons */
+    }
+  }
+  

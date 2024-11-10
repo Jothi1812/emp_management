@@ -1,0 +1,197 @@
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(120deg, #f0f4f8, pink);
+  color: #333;
+  transition: background 0.5s ease, color 0.5s;
+}
+
+/* Flex container for layout */
+.flex {
+  display: flex;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #c6f6d5, #edf2f7);
+  transition: background 0.3s ease;
+}
+
+/* Sidebar Styles */
+.w-64 {
+  width: 16rem;
+  background: linear-gradient(87deg, #00070e, #3182ce);
+  color: #fff;
+  transition: width 0.3s;
+}
+
+.p-4 {
+  padding: 1rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  color:RED;
+  margin-bottom: 1rem;
+  text-align: center;
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  transition: color 0.3s;
+}
+
+/* Button Styles */
+button {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  background: linear-gradient(90deg, #6a5acd, #8a2be2);
+  color: #fff;
+  font-weight: bold;
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s;
+  margin-bottom: 1rem;
+}
+
+button:hover {
+  background: linear-gradient(90deg, #8a2be2, #6a5acd);
+  box-shadow: 0 6px 12px rgba(138, 43, 226, 0.4);
+  transform: scale(1.05);
+}
+
+/* Main Content */
+.flex-1 {
+  flex-grow: 1;
+  padding: 2rem;
+  background: linear-gradient(135deg, #edf2f7, #c6f6d5);
+  transition: background 0.3s ease;
+}
+
+/* Profile Card */
+.profile-card {
+  width: 80%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: linear-gradient(145deg, #f7fafc, #e6fffa);
+  border-radius: 0.75rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: background 0.3s ease, transform 0.2s;
+}
+
+.profile-card:hover {
+  background: linear-gradient(145deg, #d3f9d8, #bee3f8);
+  transform: translateY(-6px);
+}
+
+.profile-image img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
+  border: 4px solid #8a2be2;
+  transition: transform 0.3s, border-color 0.3s;
+}
+
+.profile-image img:hover {
+  transform: scale(1.1);
+  border-color: #ffdf91;
+}
+
+/* Profile Item */
+.profile-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  color: #4a5568;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.profile-label {
+  color: #2d3748;
+  font-weight: bold;
+}
+
+.profile-data {
+  color: #6b46c1;
+}
+
+/* Input and Form Styles */
+input,
+textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #cbd5e0;
+  border-radius: 0.5rem;
+  background: #f7fafc;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #6b46c1;
+  box-shadow: 0 0 8px rgba(107, 70, 193, 0.3);
+}
+
+/* Badge Styles */
+.badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: white;
+}
+
+.bg-green {
+  background: linear-gradient(89deg,white, white);
+}
+
+.bg-red {
+  background: linear-gradient(120deg, #efa9a9, #e53e3e);
+}
+
+.bg-yellow {
+  background: linear-gradient(120deg, #ecc94b, #d69e2e);
+}
+
+.text-white {
+  color: #fff;
+}
+/* Example updates for gradient background and smooth hover effects */
+.profile-card {
+  background: linear-gradient(65deg, #8c87f4, rgb(89, 75, 241));
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  
+}
+
+.profile-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.profile-label {
+  font-weight: bold;
+}
+
+.profile-data {
+  color: indigo;
+  font-weight: bolder;
+}
+
+button {
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #4A90E2;
+}

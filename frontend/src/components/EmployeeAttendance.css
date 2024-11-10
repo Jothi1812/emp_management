@@ -1,0 +1,43 @@
+.employee-attendance {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .month-picker {
+    margin-bottom: 20px;
+  }
+  
+  .monthly-summary {
+    background-color: #f0f0f0;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  
+  .monthly-salary {
+    grid-column: 1 / -1;
+    font-weight: bold;
+  }
+  
+  .attendance-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .attendance-table th,
+  .attendance-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .attendance-table th {
+    background-color: #f2f2f2;
+  }

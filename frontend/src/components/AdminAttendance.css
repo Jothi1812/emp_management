@@ -1,0 +1,87 @@
+.admin-attendance {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .date-picker {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .attendance-container {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .attendance-table {
+    flex: 3;
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .attendance-table th,
+  .attendance-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .attendance-table th {
+    background-color: #f2f2f2;
+  }
+  
+  .calculate-salary-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .calculate-salary-btn:hover {
+    background-color: #45a049;
+  }
+  
+  .salary-details {
+    font-size: 0.9em;
+  }
+  
+  input[type="time"],
+  input[type="date"],
+  select {
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+  }
+  
+  .absentees-list {
+    flex: 1;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+  }
+  
+  .absentees-list h3 {
+    margin-top: 0;
+  }
+  
+  .absentees-list ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .absentees-list li {
+    margin-bottom: 5px;
+  }
+  .holiday-alert {
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
+    color: #856404;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+  }

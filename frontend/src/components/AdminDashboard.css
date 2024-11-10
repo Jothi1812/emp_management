@@ -1,0 +1,712 @@
+/* General Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7fc;
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Card and Form Container Styles */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Section Titles */
+  h2, h3 {
+    color: #2c3e50;
+    font-weight: 600;
+  }
+  
+  /* Dashboard Header */
+  .dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .dashboard-header h2 {
+    font-size: 2rem;
+    color: #3498db;
+  }
+  
+  /* Table Styles */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+  }
+  
+  th, td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #ececec;
+  }
+  
+  th {
+    background-color: #3498db;
+    color: #fff;
+    font-weight: 600;
+  }
+  
+  td {
+    background-color: #f9f9f9;
+  }
+  
+  tr:nth-child(even) td {
+    background-color: #f1f3f7;
+  }
+  
+  /* Button Styles */
+  button {
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    opacity: 0.9;
+  }
+  
+  .bg-blue-500 {
+    background-color: #3498db;
+    color: white;
+  }
+  
+  .bg-blue-500:hover {
+    background-color: #2980b9;
+  }
+  
+  .bg-yellow-500 {
+    background-color: #f1c40f;
+    color: white;
+  }
+  
+  .bg-yellow-500:hover {
+    background-color: #f39c12;
+  }
+  
+  .bg-red-500 {
+    background-color: #e74c3c;
+    color: white;
+  }
+  
+  .bg-red-500:hover {
+    background-color: #c0392b;
+  }
+  
+  .bg-green-500 {
+    background-color: #2ecc71;
+    color: white;
+  }
+  
+  .bg-green-500:hover {
+    background-color: #27ae60;
+  }
+  
+  /* Leave Request Status Styles */
+  .leave-request {
+    padding: 1.2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .leave-request.approved {
+    background-color: #d4f5d4;
+    border-left: 5px solid #2ecc71;
+  }
+  
+  .leave-request.rejected {
+    background-color: #f9d6d6;
+    border-left: 5px solid #e74c3c;
+  }
+  
+  .leave-request.pending {
+    background-color: #f0f0f0;
+    border-left: 5px solid #3498db;
+  }
+  
+  .leave-request .employee-name {
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+  
+  .leave-request .leave-dates {
+    font-size: 0.95rem;
+    color: #7f8c8d;
+  }
+  
+  .leave-request .response-message {
+    font-size: 0.95rem;
+    color: #7f8c8d;
+  }
+  
+  .leave-request .status-badge {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+    color: white;
+    border-radius: 4px;
+    font-weight: 600;
+  }
+  
+  /* Form Styles */
+  .form-container {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 3rem;
+  }
+  
+  .form-container input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 1.2rem;
+    font-size: 1rem;
+  }
+  
+  .form-container button {
+    background-color: #3498db;
+    color: white;
+    font-weight: 600;
+  }
+  
+  .form-container button:hover {
+    background-color: #2980b9;
+  }
+  
+  /* Responsive Design */
+  @media screen and (max-width: 768px) {
+    .dashboard-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .form-container {
+      margin-top: 1rem;
+    }
+  
+    table {
+      font-size: 0.9rem;
+    }
+  
+    .leave-request {
+      padding: 1rem;
+    }
+  }
+  /* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7fa;
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
+  
+  .container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+  }
+  
+  h2, h3 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+  }
+  
+  /* Form Styles */
+  form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    transition: border-color 0.3s;
+  }
+  
+  input:focus {
+    border-color: #3498db;
+    outline: none;
+  }
+  
+  button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    opacity: 0.9;
+  }
+  
+  /* Buttons */
+  .bg-blue-500 {
+    background-color: #3498db;
+  }
+  
+  .bg-blue-600 {
+    background-color: #2980b9;
+  }
+  
+  .bg-yellow-500 {
+    background-color: #f1c40f;
+  }
+  
+  .bg-red-500 {
+    background-color: #e74c3c;
+  }
+  
+  .bg-green-500 {
+    background-color: #2ecc71;
+  }
+  
+  button.text-white {
+    color: #fff;
+  }
+  
+  /* Table Styles */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+  }
+  
+  th, td {
+    padding: 12px;
+    border: 1px solid #100e0e;
+    text-align: left;
+    color: purple;
+  }
+  
+  th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  /* General Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f9fc;
+    color: #333;
+    padding: 20px;
+}
+
+/* Leave Requests Container */
+.leave-requests {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+}
+
+.leave-requests h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #2c3e50;
+    font-weight: bold;
+}
+
+/* Individual Request Styles */
+.request {
+    border-bottom: 1px solid #e0e0e0;
+    padding: 15px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.request:last-child {
+    border-bottom: none;
+}
+
+.request-details {
+    max-width: 70%;
+}
+
+.request-details .name {
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 5px;
+    color: #34495e;
+}
+
+.request-details .date-range {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    margin-bottom: 8px;
+}
+
+.request-details .reason {
+    font-size: 0.85rem;
+    color: #2d3436;
+    margin-bottom: 8px;
+}
+
+.request-details .response {
+    font-style: italic;
+    color: #95a5a6;
+    font-size: 0.85rem;
+}
+
+/* Status Badge Styles */
+.status-badge {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border-radius: 5px;
+    color: #fff;
+    text-align: center;
+}
+
+.status-approved {
+    background-color: #2ecc71;
+}
+
+.status-rejected {
+    background-color: #e74c3c;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .request {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .request-details {
+        max-width: 100%;
+    }
+}
+
+  
+  
+  /* Utility Styles */
+  .mb-4 {
+    margin-bottom: 16px;
+  }
+  
+  .mb-6 {
+    margin-bottom: 24px;
+  }
+  
+  .p-8 {
+    padding: 32px;
+  }
+  
+  .max-w-md {
+    max-width: 500px;
+  }
+  
+  .space-y-4 > * + * {
+    margin-top: 16px;
+  }
+  
+  .overflow-x-auto {
+    overflow-x: auto;
+  }
+  /* AdminDashboard.css */
+
+/* General Styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f7fafc;
+  margin: 0;
+  padding: 0;
+}
+
+.flex {
+  display: flex;
+  min-height: 100vh;
+}
+
+
+
+.bg-gray-800 {
+  background-color: #2d3748;
+}
+
+.text-white {
+  color: white;
+}
+
+.text-gray-300 {
+  color: #e2e8f0;
+}
+
+.text-gray-800 {
+  color: #2d3748;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+.space-y-4 {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #4a5568;
+}
+
+button i {
+  margin-right: 10px;
+}
+
+button:focus {
+  outline: none;
+}
+
+/* Content Area */
+
+.bg-white {
+  background-color: white;
+}
+
+.p-6 {
+  padding: 1.5rem;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.shadow-md {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Add/Edit Employee Form */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+input:focus {
+  outline: none;
+  border-color: #3182ce;
+}
+
+button[type='submit'] {
+  background-color: #3182ce;
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+button[type='submit']:hover {
+  background-color: #63b3ed;
+}
+
+/* Employee List Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #edf2f7;
+}
+
+tr:hover {
+  background-color: #f7fafc;
+}
+
+.bg-yellow-500 {
+  background-color: #ecc94b;
+}
+
+.bg-red-500 {
+  background-color: #f56565;
+}
+
+.bg-green-500 {
+  background-color: #48bb78;
+}
+
+.text-white {
+  color: white;
+}
+
+button.bg-yellow-500:hover {
+  background-color: #d69e2e;
+}
+
+button.bg-red-500:hover {
+  background-color: #e53e3e;
+}
+
+button.bg-green-500:hover {
+  background-color: #38a169;
+}
+
+/* Leave Requests Table */
+.table-auto {
+  table-layout: auto;
+}
+
+.flex {
+  display: flex;
+}
+
+.space-x-2 {
+  gap: 0.5rem;
+}
+
+button {
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.transition {
+  transition: background-color 0.2s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .flex {
+    flex-direction: column;
+  }
+
+ 
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* AdminDashboard.css */
+
+/* Basic styling for light and dark themes */
+body.light {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+body.dark {
+  background-color: #333;
+  color: #f0f0f0;
+}
+
+.flex.light .bg-gray-800 {
+  background-color: #e0e0e0;
+}
+
+.flex.dark .bg-gray-800 {
+  background-color: #333;
+}
+
+/* Settings dropdown positioning */
+.settings-dropdown {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+}
+
+.settings-dropdown-content {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 160px;
+  padding: 0.5rem;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+.settings-dropdown-content button {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  text-align: left;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.settings-dropdown-content button:hover {
+  background-color: #f0f0f0;
+}

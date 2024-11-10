@@ -1,0 +1,31 @@
+.absentees-list {
+    margin-top: 2rem;
+  }
+  
+  .absentees-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .absentees-table th,
+  .absentees-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .absentees-table th {
+    background-color: #f2f2f2;
+  }
+  
+  .notify-btn {
+    padding: 5px 10px;
+    background-color: #008CBA;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .notify-btn:hover {
+    background-color: #007B9A;
+  }
