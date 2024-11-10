@@ -3,7 +3,7 @@ import axios from 'axios';
 import './AdminDashboard.css';
 import AbsenteesList from './AbsenteesList';
 import AdminAttendance from './AdminAttendance';
-import AttendanceStatistics from './AttendanceStatistics';
+
 
 export default function AdminDashboard() {
   const [employees, setEmployees] = useState([]);
