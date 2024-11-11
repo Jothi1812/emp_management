@@ -13,7 +13,7 @@ export default function GeneralUpdate() {
     setSendStatus('');
 
     try {
-      await axios.post('http://localhost:5000/api/send-general-update', { subject, message });
+      await axios.post('https://emp-management-hbon.onrender.com/api/send-general-update', { subject, message });
       setSendStatus('Update sent successfully to all employees.');
       setSubject('');
       setMessage('');

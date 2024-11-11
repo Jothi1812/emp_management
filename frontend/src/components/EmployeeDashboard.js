@@ -25,8 +25,8 @@ function EmployeeDashboard() {
     const fetchData = async () => {
       try {
         const [empResponse, leavesResponse] = await Promise.all([
-          axios.get(`http://localhost:5000/api/employees/${id}`),
-          axios.get(`http://localhost:5000/api/leaves/${id}`)
+          axios.get(`https://emp-management-hbon.onrender.com/api/employees/${id}`),
+          axios.get(`https://emp-management-hbon.onrender.com/api/leaves/${id}`)
         ]);
         setEmployee(empResponse.data);
         setLeaves(leavesResponse.data);
@@ -40,7 +40,7 @@ function EmployeeDashboard() {
   const handleLeaveSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/leaves', {
+      const response = await axios.post('https://emp-management-hbon.onrender.com/api/leaves', {
         ...leaveForm,
         employeeId: id
       });
@@ -54,7 +54,7 @@ function EmployeeDashboard() {
   const handleResignationSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/resignations', {
+      await axios.post('https://emp-management-hbon.onrender.com/api/resignations', {
         ...resignationForm,
         employeeId: id
       });
@@ -67,7 +67,7 @@ function EmployeeDashboard() {
 
   const handleCancelLeave = async (leaveId) => {
     try {
-      await axios.delete(`http://localhost:5000/api/leaves/${leaveId}`);
+      await axios.delete(`https://emp-management-hbon.onrender.com/api/leaves/${leaveId}`);
       setLeaves(leaves.filter(leave => leave._id !== leaveId));
     } catch (error) {
       alert('Error cancelling leave request');

@@ -17,7 +17,7 @@ export default function AttendanceStatistics() {
 
   const fetchAttendanceStats = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/attendance/stats', {
+      const response = await axios.get('https://emp-management-hbon.onrender.com/api/attendance/stats', {
         params: { date: selectedDate }
       });
       setAttendanceStats(response.data);
@@ -32,7 +32,7 @@ export default function AttendanceStatistics() {
       const startDate = new Date(endDate);
       startDate.setDate(startDate.getDate() - 30);
 
-      const response = await axios.get('http://localhost:5000/api/attendance/monthly-trend', {
+      const response = await axios.get('https://emp-management-hbon.onrender.com/api/attendance/monthly-trend', {
         params: {
           startDate: startDate.toISOString().split('T')[0],
           endDate: endDate.toISOString().split('T')[0]

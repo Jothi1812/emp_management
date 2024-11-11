@@ -11,7 +11,7 @@ export default function AbsenteesList() {
 
   const fetchAbsentees = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/absentees', {
+      const response = await axios.get('https://emp-management-hbon.onrender.com/api/absentees', {
         params: { date: selectedDate }
       });
       setAbsentees(response.data);

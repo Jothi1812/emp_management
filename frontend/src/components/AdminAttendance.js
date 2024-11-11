@@ -15,7 +15,7 @@ export default function AdminAttendance() {
 
   const fetchEmployees = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/employees');
+      const response = await axios.get('https://emp-management-hbon.onrender.com/api/employees');
       setEmployees(response.data);
     } catch (error) {
       console.error('Error fetching employees:', error);
@@ -24,7 +24,7 @@ export default function AdminAttendance() {
 
   const fetchAttendance = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/attendance', {
+      const response = await axios.get('https://emp-management-hbon.onrender.com/api/attendance', {
         params: { date: selectedDate }
       });
       setAttendance(response.data);
@@ -48,7 +48,7 @@ export default function AdminAttendance() {
         workingHours = workingHours / 2;
       }
 
-      await axios.post('http://localhost:5000/api/attendance', {
+      await axios.post('https://emp-management-hbon.onrender.com/api/attendance', {
         employeeId,
         date: selectedDate,
         status,
@@ -69,7 +69,7 @@ export default function AdminAttendance() {
       const date = new Date(selectedDate);
       const month = date.getMonth() + 1;
       const year = date.getFullYear();
-      const response = await axios.get(`http://localhost:5000/api/salary/${employeeId}`, {
+      const response = await axios.get(`https://emp-management-hbon.onrender.com/api/salary/${employeeId}`, {
         params: { month, year }
       });
       setSalaryData(prev => ({ ...prev, [employeeId]: response.data }));

@@ -25,8 +25,8 @@ export default function AdminDashboard() {
     const fetchData = async () => {
       try {
         const [empResponse, leavesResponse] = await Promise.all([
-          axios.get('http://localhost:5000/api/employees'),
-          axios.get('http://localhost:5000/api/leaves')
+          axios.get('https://emp-management-hbon.onrender.com/api/employees'),
+          axios.get('https://emp-management-hbon.onrender.com/api/leaves')
         ]);
         setEmployees(empResponse.data);
         setLeaves(leavesResponse.data);
@@ -40,7 +40,7 @@ export default function AdminDashboard() {
   useEffect(() => {
     const fetchResignations = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/resignations');
+        const response = await axios.get('https://emp-management-hbon.onrender.com/api/resignations');
         setResignations(response.data);
       } catch (error) {
         alert('Error fetching resignations');
@@ -51,7 +51,7 @@ export default function AdminDashboard() {
 
   const handleLeaveAction = async (leaveId, status, responseMessage) => {
     try {
-      await axios.put(`http://localhost:5000/api/leaves/${leaveId}`, { status, responseMessage });
+      await axios.put(`https://emp-management-hbon.onrender.com/api/leaves/${leaveId}`, { status, responseMessage });
       setLeaves(leaves.map(leave =>
         leave._id === leaveId
           ? { ...leave, status, responseMessage }
@@ -64,7 +64,7 @@ export default function AdminDashboard() {
   
   const handleResignationAction = async (resignationId, status, responseMessage) => {
     try {
-      await axios.put(`http://localhost:5000/api/resignations/${resignationId}`, { status, responseMessage });
+      await axios.put(`https://emp-management-hbon.onrender.com/api/resignations/${resignationId}`, { status, responseMessage });
       setResignations(resignations.map(resignation =>
         resignation._id === resignationId
           ? { ...resignation, status, responseMessage }
@@ -79,9 +79,9 @@ export default function AdminDashboard() {
     e.preventDefault();
     try {
       if (editMode) {
-        await axios.put(`http://localhost:5000/api/employees/${formData.id}`, formData);
+        await axios.put(`https://emp-management-hbon.onrender.com/api/employees/${formData.id}`, formData);
       } else {
-        await axios.post('http://localhost:5000/api/employees', formData);
+        await axios.post('https://emp-management-hbon.onrender.com/api/employees', formData);
       }
       fetchEmployees();
       setFormData({
@@ -99,13 +99,13 @@ export default function AdminDashboard() {
   };
   
   const fetchEmployees = async () => {
-    const response = await axios.get('http://localhost:5000/api/employees');
+    const response = await axios.get('https://emp-management-hbon.onrender.com/api/employees');
     setEmployees(response.data);
   };
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/employees/${id}`);
+      await axios.delete(`https://emp-management-hbon.onrender.com/api/employees/${id}`);
       fetchEmployees();
     } catch (error) {
       alert('Error deleting employee');

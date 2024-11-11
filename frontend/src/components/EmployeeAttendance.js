@@ -13,7 +13,7 @@ export default function EmployeeAttendance({ employeeId }) {
       const startDate = new Date(year, month - 1, 1);
       const endDate = new Date(year, month, 0);
       
-      const response = await axios.get(`http://localhost:5000/api/attendance/${employeeId}`, {
+      const response = await axios.get(`https://emp-management-hbon.onrender.com/api/attendance/${employeeId}`, {
         params: { startDate, endDate }
       });
       setAttendance(response.data);
@@ -25,7 +25,7 @@ export default function EmployeeAttendance({ employeeId }) {
   const fetchSalary = async () => {
     try {
       const [year, month] = selectedMonth.split('-');
-      const response = await axios.get(`http://localhost:5000/api/salary/${employeeId}`, {
+      const response = await axios.get(`https://emp-management-hbon.onrender.com/api/salary/${employeeId}`, {
         params: { month, year }
       });
       setSalaryData(response.data);
