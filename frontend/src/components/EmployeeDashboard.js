@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './EmployeeDashboard.css';
 import profile from '../images/profile.jpg';
-import { FaUser, FaCalendar, FaListAlt, FaClipboardList } from 'react-icons/fa';  // Add FaClipboardList for attendance section
+import { FaUser, FaCalendar, FaListAlt, FaClipboardList,FaSignOutAlt } from 'react-icons/fa';  // Add FaClipboardList for attendance section
 import EmployeeAttendance from './EmployeeAttendance'; // Import EmployeeAttendance component
 
 function EmployeeDashboard() {
@@ -14,6 +14,10 @@ function EmployeeDashboard() {
     startDate: '',
     endDate: '',
     reason: ''
+  });
+  const [resignationForm, setResignationForm] = useState({
+    reason: '',
+    lastWorkingDay: ''
   });
   const [activeSection, setActiveSection] = useState('profile');
 
@@ -44,6 +48,20 @@ function EmployeeDashboard() {
       setLeaveForm({ startDate: '', endDate: '', reason: '' });
     } catch (error) {
       alert('Error applying for leave');
+    }
+  };
+
+  const handleResignationSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post('http://localhost:5000/api/resignations', {
+        ...resignationForm,
+        employeeId: id
+      });
+      alert('Resignation submitted successfully');
+      setResignationForm({ reason: '', lastWorkingDay: '' });
+    } catch (error) {
+      alert('Error submitting resignation');
     }
   };
 
@@ -90,6 +108,13 @@ function EmployeeDashboard() {
           className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 mb-2"
         ><FaCalendar className="icon" />
           Apply for Leave
+        </button>
+        <button
+          onClick={() => setActiveSection('resignation')}
+          className="w-full bg-red-500 text-white p-2 rounded hover:bg-red-600 mb-2"
+        >
+          <FaSignOutAlt className="inline-block mr-2" />
+          Apply for Resignation
         </button>
         <button
           onClick={() => setActiveSection('leaveHistory')}
@@ -186,7 +211,41 @@ function EmployeeDashboard() {
             )}
           </div>
         )}
-
+       {activeSection === 'resignation' && (
+          <div>
+            <h3 className="text-xl font-bold mb-4">Apply for Resignation</h3>
+            <form onSubmit={handleResignationSubmit} className="max-w-md bg-white p-6 rounded-lg shadow-md">
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-gray-700 mb-2">Reason for Resignation</label>
+                  <textarea
+                    value={resignationForm.reason}
+                    onChange={(e) => setResignationForm({ ...resignationForm, reason: e.target.value })}
+                    className="w-full p-2 border rounded"
+                    rows="3"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-gray-700 mb-2">Last Working Day</label>
+                  <input
+                    type="date"
+                    value={resignationForm.lastWorkingDay}
+                    onChange={(e) => setResignationForm({ ...resignationForm, lastWorkingDay: e.target.value })}
+                    className="w-full p-2 border rounded"
+                    required
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="w-full bg-red-500 text-white p-2 rounded hover:bg-red-600"
+                >
+                  Submit Resignation
+                </button>
+              </div>
+            </form>
+          </div>
+        )}
         {activeSection === 'leaveHistory' && (
           <div>
             <h3 className="text-xl font-bold mb-4">Leave History</h3>

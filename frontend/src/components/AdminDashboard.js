@@ -3,11 +3,13 @@ import axios from 'axios';
 import './AdminDashboard.css';
 import AbsenteesList from './AbsenteesList';
 import AdminAttendance from './AdminAttendance';
+import GeneralUpdate from './GeneralUpdate';
 
 
 export default function AdminDashboard() {
   const [employees, setEmployees] = useState([]);
   const [leaves, setLeaves] = useState([]);
+  const [resignations, setResignations] = useState([]);
   const [formData, setFormData] = useState({
     id: '',
     name: '',
@@ -35,6 +37,18 @@ export default function AdminDashboard() {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const fetchResignations = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/resignations');
+        setResignations(response.data);
+      } catch (error) {
+        alert('Error fetching resignations');
+      }
+    };
+    fetchResignations();
+  }, []);
+
   const handleLeaveAction = async (leaveId, status, responseMessage) => {
     try {
       await axios.put(`http://localhost:5000/api/leaves/${leaveId}`, { status, responseMessage });
@@ -47,7 +61,20 @@ export default function AdminDashboard() {
       alert('Error updating leave status');
     }
   };
-
+  
+  const handleResignationAction = async (resignationId, status, responseMessage) => {
+    try {
+      await axios.put(`http://localhost:5000/api/resignations/${resignationId}`, { status, responseMessage });
+      setResignations(resignations.map(resignation =>
+        resignation._id === resignationId
+          ? { ...resignation, status, responseMessage }
+          : resignation
+      ));
+    } catch (error) {
+      alert('Error updating resignation status');
+    }
+  };
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -70,7 +97,7 @@ export default function AdminDashboard() {
       alert('Error saving employee');
     }
   };
-
+  
   const fetchEmployees = async () => {
     const response = await axios.get('http://localhost:5000/api/employees');
     setEmployees(response.data);
@@ -90,6 +117,7 @@ export default function AdminDashboard() {
     setEditMode(true);
   };
 
+  
   return (
     <div className="flex">
       {/* Left Sidebar */}
@@ -115,10 +143,30 @@ export default function AdminDashboard() {
             <i className="fas fa-calendar-check mr-3"></i>Leave Requests
           </button>
           <button
+            onClick={() => setActiveSection('resignationRequests')}
+            className="w-full text-left py-3 px-4 bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none transition duration-200"
+          >
+            <i className="fas fa-sign-out-alt mr-3"></i>Resignation Requests
+          </button>
+          <button
+            onClick={() => setActiveSection('absentees')}
+            className="w-full text-left py-3 px-4 bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none transition duration-200"
+          >
+            <i className="fas fa-user-times mr-3"></i>Absentees List
+          </button>
+
+          <button
             onClick={() => setActiveSection('attendance')}
             className="w-full text-left py-3 px-4 bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none transition duration-200"
           >
             <i className="fas fa-calendar-check mr-3"></i>Attendance Management
+          </button>
+
+          <button
+            onClick={() => setActiveSection('generalUpdate')}
+            className="w-full text-left py-3 px-4 bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none transition duration-200"
+          >
+            <i className="fas fa-bullhorn mr-3"></i>Send General Update
           </button>
              
         </div>
@@ -278,14 +326,58 @@ export default function AdminDashboard() {
             </table>
           </div>
         )}
-
-        {/* Attendance Management */}
-        {activeSection === 'attendance' && (
-          <div>
-            <AdminAttendance />
-            <AbsenteesList />
+        {activeSection === 'resignationRequests' && (
+          <div className="mt-8 bg-white p-6 rounded-lg shadow-md">
+            <h3 className="text-xl font-bold text-gray-800 mb-6">Resignation Requests</h3>
+            <table className="min-w-full table-auto">
+              <thead className="bg-gray-200">
+                <tr>
+                  <th className="px-6 py-3 border-b text-left">Employee ID</th>
+                  <th className="px-6 py-3 border-b text-left">Reason</th>
+                  <th className="px-6 py-3 border-b text-left">Last Working Day</th>
+                  <th className="px-6 py-3 border-b text-left">Status</th>
+                  <th className="px-6 py-3 border-b text-left">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {resignations.map((resignation) => (
+                  <tr key={resignation._id} className="border-b">
+                    <td className="px-6 py-4">{resignation.employeeId}</td>
+                    <td className="px-6 py-4">{resignation.reason}</td>
+                    <td className="px-6 py-4">{new Date(resignation.lastWorkingDay).toLocaleDateString()}</td>
+                    <td className="px-6 py-4">{resignation.status}</td>
+                    <td className="px-6 py-4">
+                      {resignation.status === 'pending' ? (
+                        <div className="flex space-x-2">
+                          <button
+                            onClick={() => handleResignationAction(resignation._id, 'approved', 'Resignation Approved')}
+                            className="bg-green-500 text-white p-2 rounded hover:bg-green-600 transition duration-200"
+                          >
+                            Approve
+                          </button>
+                          <button
+                            onClick={() => handleResignationAction(resignation._id, 'rejected', 'Resignation Rejected')}
+                            className="bg-red-500 text-white p-2 rounded hover:bg-red-600 transition duration-200"
+                          >
+                            Reject
+                          </button>
+                        </div>
+                      ) : (
+                        <div className="text-gray-500">Actions Disabled</div>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         )}
+<div className="w-3/4 p-8">
+        {activeSection === 'attendance' && <AdminAttendance />}
+        {activeSection === 'absentees' && <AbsenteesList />}
+        {activeSection === 'generalUpdate' && <GeneralUpdate />}
+      </div>
+
       </div>
     </div>
   );

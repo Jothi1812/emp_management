@@ -1,17 +1,21 @@
-// Backend - server.js
+
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
-
-
+const nodemailer = require('nodemailer');
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect('mongodb://localhost:27017/employee_management', {
+mongoose.connect('mongodb+srv://jothisree77:jothi@cluster0.jap0k.mongodb.net/employee_management?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
+
+// mongoose.connect('mongodb://localhost:27017/employee_management', {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true
+// });
 
 const employeeSchema = new mongoose.Schema({
   id: { type: String, required: true, unique: true },
@@ -323,82 +327,123 @@ app.post('/api/leaves', async (req, res) => {
       res.status(500).send({ message: 'Error canceling leave request' });
     }
   });
-  // Add this in server.js
-
-// // Define the notification schema
-// const notificationSchema = new mongoose.Schema({
-//   employeeId: { type: String, required: true },
-//   message: { type: String, required: true },
-//   date: { type: Date, default: Date.now },
-//   status: { type: String, enum: ['unread', 'read'], default: 'unread' }
-// });
-
-// const Notification = mongoose.model('Notification', notificationSchema);
-
-// // Endpoint to create a notification
-// app.post('/api/notifications', async (req, res) => {
-//   try {
-//     const { employeeId, message } = req.body;
-//     const notification = new Notification({ employeeId, message });
-//     await notification.save();
-//     res.status(201).json({ message: 'Notification sent successfully' });
-//   } catch (error) {
-//     res.status(500).json({ message: 'Server error' });
-//   }
-// });
-
-// // Endpoint to get notifications for a specific employee
-// app.get('/api/notifications/:employeeId', async (req, res) => {
-//   try {
-//     const notifications = await Notification.find({ employeeId: req.params.employeeId });
-//     res.json(notifications);
-//   } catch (error) {
-//     res.status(500).json({ message: 'Server error' });
-//   }
-// });
-// const fetchNotifications = async (employeeId) => {
-//   try {
-//     const response = await axios.get(`http://localhost:5000/api/notifications/${employeeId}`);
-//     return response.data; // Display these on the frontend
-//   } catch (error) {
-//     console.error('Error fetching notifications:', error);
-//   }
-// };
-// // Inside the /api/notifications endpoint
-// const nodemailer = require('nodemailer');
-
-// const transporter = nodemailer.createTransport({
-//   service: 'gmail',
-//   auth: {
-//     user: 'jothisree77@gmail.com',
-//     pass: 'admin'
-//   }
-// });
-
-// app.post('/api/notifications', async (req, res) => {
-//   try {
-//     const { employeeId, message } = req.body;
-//     const notification = new Notification({ employeeId, message });
-//     await notification.save();
-
-//     // Find employee's email
-//     const employee = await Employee.findOne({ id: employeeId });
-//     if (employee) {
-//       const mailOptions = {
-//         from: 'jothisree77@gmail.com',
-//         to: employee.phone,
-//         subject: 'Attendance Notification',
-//         text: message
-//       };
-//       await transporter.sendMail(mailOptions);
-//     }
-
-//     res.status(201).json({ message: 'Notification sent successfully' });
-//   } catch (error) {
-//     res.status(500).json({ message: 'Server error' });
-//   }
-// });
-
+  
+  const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 587,
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS
+    }
+  });
+  
+  // Function to send email
+  async function sendEmail(to, subject, text) {
+    try {
+      await transporter.sendMail({
+        from: process.env.EMAIL_USER,
+        to,
+        subject,
+        text
+      });
+      console.log(`Email sent to ${to}`);
+    } catch (error) {
+      console.error('Error sending email:', error);
+    }
+  }
+  
+  // Absentees endpoint with email notification
+  app.get('/api/absentees', async (req, res) => {
+    try {
+      const { date } = req.query;
+      const absentees = await Attendance.find({ date: new Date(date), status: 'absent' });
+      const absenteeIds = absentees.map(a => a.employeeId);
+      const absenteeDetails = await Employee.find({ id: { $in: absenteeIds } });
+  
+      // Send email notifications to absentees
+      for (const employee of absenteeDetails) {
+        await sendEmail(
+          employee.email,
+          'Absence Notification',
+          `Dear ${employee.name},\n\nYou were marked absent on ${date}. If this is incorrect, please contact HR.\n\nBest regards,\nHR Team`
+        );
+      }
+  
+      res.json(absenteeDetails);
+    } catch (error) {
+      res.status(500).json({ message: 'Server error' });
+    }
+  });
+  
+  // General update endpoint
+  app.post('/api/send-general-update', async (req, res) => {
+    try {
+      const { subject, message } = req.body;
+      const employees = await Employee.find({});
+  
+      for (const employee of employees) {
+        await sendEmail(
+          employee.email,
+          subject,
+          `Dear ${employee.name},\n\n${message}\n\nBest regards,\nHR Team`
+        );
+      }
+  
+      res.json({ message: 'General update sent to all employees' });
+    } catch (error) {
+      res.status(500).json({ message: 'Server error' });
+    }
+  });
+  
+  const resignationSchema = new mongoose.Schema({
+    employeeId: { type: String, required: true },
+    reason: { type: String, required: true },
+    lastWorkingDay: { type: Date, required: true },
+    status: { type: String, enum: ['pending', 'approved', 'rejected'], default: 'pending' },
+    submittedDate: { type: Date, default: Date.now },
+    responseMessage: { type: String }
+  });
+  
+  const Resignation = mongoose.model('Resignation', resignationSchema);
 const PORT = 5000;
+
+// Submit resignation
+app.post('/api/resignations', async (req, res) => {
+  try {
+    const resignation = new Resignation(req.body);
+    await resignation.save();
+    res.status(201).json(resignation);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Get all resignations (for admin)
+app.get('/api/resignations', async (req, res) => {
+  try {
+    const resignations = await Resignation.find().sort({ submittedDate: -1 });
+    res.json(resignations);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Update resignation status (for admin)
+app.put('/api/resignations/:id', async (req, res) => {
+  try {
+    const resignation = await Resignation.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+    if (!resignation) {
+      return res.status(404).json({ message: 'Resignation not found' });
+    }
+    res.json(resignation);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
 app.listen(PORT, () => {
   console.log("Started...")})
